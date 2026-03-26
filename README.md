@@ -19,8 +19,8 @@ The EXODIA stack is a curation of the best zero-waste tools in the agentic ecosy
 *   **[jCodeMunch](https://github.com/jgravelle/jcodemunch-mcp)** by [J. Gravelle](https://github.com/jgravelle).
 *   **[Serena](https://github.com/oraios/serena)** by [Oraios AI](https://github.com/oraios).
 *   **[Codebase-Memory](https://github.com/DeusData/codebase-memory-mcp)** by [DeusData](https://github.com/DeusData).
-*   **[AI-Distiller](https://github.com/janreges/ai-distiller-mcp)** by [Jan Reges](https://github.com/janreges).
-*   **[RTK (Rust Token Killer)](https://github.com/mintlify/rtk)** 
+*   **[AI-Distiller](https://github.com/janreges/ai-distiller)** by [Jan Reges](https://github.com/janreges).
+*   **[RTK (Rust Token Killer)](https://github.com/rtk-ai/rtk)** 
 
 ## 🚀 Quick Start
 
