@@ -1,10 +1,18 @@
-# ✦ EXODIA: The Five-Piece AI Optimization Stack
+# ✦ EXODIA: The Complete AI Optimization Stack
 
-Exodia is a zero-waste development configuration for agentic AI coding assistants like **Claude Code**, **Cursor**, **Windsurf**, **Copilot**, **OpenAI Codex**, and **Antigravity**. It combines five Model Context Protocol (MCP) servers to reduce token bloat, prevent context collapse, and cut costs — particularly valuable for developers on the **Claude Pro $20/month plan** who need to make every token count.
+Exodia is a zero-waste development configuration for agentic AI coding assistants like **Claude Code**, **Cursor**, **Windsurf**, **Copilot**, **OpenAI Codex**, and **Antigravity**. It combines six tools to reduce token bloat, prevent context collapse, and cut costs — particularly valuable for developers on the **Claude Pro $20/month plan** who need to make every token count.
+
+## 🔮 Piece Zero: The Foundation
+
+Before adding any MCP servers, install this first. Every MCP server you add dumps its full tool schema into the context window on every message. With 5 servers, that's 20-50k tokens of tool descriptions eating your context before you even type anything. mcp2cli eliminates this overhead entirely.
+
+| Piece | What It Does | Token Savings |
+| :--- | :--- | :--- |
+| **[mcp2cli](https://github.com/myeolinmalchi/mcp2cli)** | Converts MCP servers into CLI tools so their schemas aren't loaded into context. Without this, the other 5 pieces ironically add their own token bloat. | 96-99% on tool schema overhead |
 
 ## 🧩 The Five Pieces
 
-All five components work together, but each delivers value independently:
+With Piece Zero handling the overhead, these five components do the real work. Each delivers value independently:
 
 | Piece | What It Does | Token Savings |
 | :--- | :--- | :--- |
@@ -105,6 +113,7 @@ Instead of the agent reading 20 files to understand how your app is structured, 
 
 EXODIA is a curation of the best zero-waste tools in the agentic ecosystem. Full credit to the original creators:
 
+- **[mcp2cli](https://github.com/myeolinmalchi/mcp2cli)** by [myeolinmalchi](https://github.com/myeolinmalchi)
 - **[jCodeMunch](https://github.com/jgravelle/jcodemunch-mcp)** by [J. Gravelle](https://github.com/jgravelle)
 - **[Serena](https://github.com/oraios/serena)** by [Oraios AI](https://github.com/oraios)
 - **[Codebase-Memory](https://github.com/DeusData/codebase-memory-mcp)** by [DeusData](https://github.com/DeusData)
