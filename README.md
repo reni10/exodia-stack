@@ -43,6 +43,17 @@ This ensures that if the build fails, the agent only sees a **distilled summary*
 ### 3. Structural Discovery
 Before asking an agent to "find where X is used," remind it: **"Use your jCodeMunch/Serena tools to map the graph first."** This prevents the agent from falling back to expensive `grep` searches.
 
+## ⚡ The Awakening: First-Time Indexing
+
+Before EXODIA can protect your context window, it must build its mental models. Perform these three "init" steps upon first install:
+
+1.  **jCodeMunch Indexing**: Prompt the agent to run `mcp_jcodemunch_index_folder`. This creates the symbol map (classes, functions, types).
+2.  **Codebase-Memory Scan**: Prompt the agent to scan the project using `Codebase-Memory` to identify architectural patterns (Controller-Service-Repo mappings).
+3.  **Serena Warmup**: Ask the agent to perform a "deep reference check" on a core module to verify the LSP server is properly mapping the graph.
+
+---
+*Once indexed, EXODIA will track changes incrementally. You only have to "Awaken" it once.*
+
 ## 📊 Performance
 
 ### 1. Configure MCP Servers
