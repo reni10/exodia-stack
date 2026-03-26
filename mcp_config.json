@@ -1,0 +1,36 @@
+{
+  "mcpServers": {
+    "jcodemunch": {
+      "command": "uvx",
+      "args": [
+        "jcodemunch-mcp"
+      ],
+      "env": {
+        "JCODEMUNCH_USE_AI_SUMMARIES": "true"
+      }
+    },
+    "serena": {
+      "command": "uvx",
+      "args": [
+        "--from",
+        "git+https://github.com/oraios/serena",
+        "serena",
+        "start-mcp-server"
+      ]
+    },
+    "codebase-memory": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "codebase-memory-mcp"
+      ]
+    },
+    "distill": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@janreges/ai-distiller-mcp"
+      ]
+    }
+  }
+}
