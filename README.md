@@ -9,7 +9,7 @@ Exodia is a zero-waste development configuration for agentic AI coding assistant
 Paste this into **Claude Code**, **Codex**, or any agentic coding assistant:
 
 ```
-Clone https://github.com/stefmat10/exodia-stack and run ./install_exodia.sh to install the EXODIA token optimization stack. Then copy the contents of policy.md into my CLAUDE.md file.
+Clone https://github.com/reni10/exodia-stack and run ./install_exodia.sh to install the EXODIA token optimization stack. Then copy the contents of policy.md into my CLAUDE.md file.
 ```
 
 That's it. Your agent clones the repo, registers the MCP servers, installs RTK, and configures the policy. **No manual steps.**
@@ -59,7 +59,7 @@ The result: significantly more messages per rate-limit window, and longer produc
 ### One-Command Install (Claude Code)
 
 ```bash
-git clone https://github.com/stefmat10/exodia-stack.git && cd exodia-stack && ./install_exodia.sh
+git clone https://github.com/reni10/exodia-stack.git && cd exodia-stack && ./install_exodia.sh
 ```
 
 This automatically:
@@ -68,7 +68,7 @@ This automatically:
 - Installs RTK via cargo
 - Checks all prerequisites (uvx, npx, Rust)
 
-Then just restart Claude Code and you're done. Or tell Claude Code: **"Look at this repo and install the EXODIA stack to help me save tokens: https://github.com/stefmat10/exodia-stack"**
+Then just restart Claude Code and you're done. Or tell Claude Code: **"Look at this repo and install the EXODIA stack to help me save tokens: https://github.com/reni10/exodia-stack"**
 
 ### Other Agents (Cursor, Windsurf, Copilot, Codex)
 
