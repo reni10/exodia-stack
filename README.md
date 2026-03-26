@@ -22,7 +22,28 @@ The EXODIA stack is a curation of the best zero-waste tools in the agentic ecosy
 *   **[AI-Distiller](https://github.com/janreges/ai-distiller)** by [Jan Reges](https://github.com/janreges).
 *   **[RTK (Rust Token Killer)](https://github.com/rtk-ai/rtk)** 
 
-## 🚀 Quick Start
+## 🔮 Integration Guide: Summoning the Stack
+
+The EXODIA stack is designed for high-performance coding agents like **Antigravity**, **Claude Code**, and **Cursor**. To use it to its full potential, follow these integration patterns:
+
+### 1. The Instruction Layer (`agents.md` / `claude.md`)
+Most advanced agents look for a "contract" or "policy" file. You MUST copy the contents of `policy.md` into one of the following files in your project root:
+*   `agents.md` (for Antigravity/General Agents)
+*   `claude.md` (for Claude Code)
+*   `.cursorrules` (for Cursor)
+*   `.agent/instructions.md` (for generic agentic workflows)
+
+### 2. Zero-Waste Scripting
+Always prefix your commands. Instead of running `npm run build`, use:
+```bash
+.bin/rtk npm run build
+```
+This ensures that if the build fails, the agent only sees a **distilled summary** of the errors instead of 5,000 lines of junk that would crash your context window.
+
+### 3. Structural Discovery
+Before asking an agent to "find where X is used," remind it: **"Use your jCodeMunch/Serena tools to map the graph first."** This prevents the agent from falling back to expensive `grep` searches.
+
+## 📊 Performance
 
 ### 1. Configure MCP Servers
 Copy the contents of `mcp_config.json` into your IDE's MCP settings.
