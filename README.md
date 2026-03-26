@@ -2,13 +2,15 @@
 
 Exodia is a zero-waste development configuration for agentic AI coding assistants like **Claude Code**, **Cursor**, **Windsurf**, **Copilot**, **OpenAI Codex**, and **Antigravity**. It combines six tools to reduce token bloat, prevent context collapse, and cut costs — particularly valuable for developers on the **Claude Pro $20/month plan** who need to make every token count.
 
-## 🔮 Piece Zero: The Foundation
+## 🔮 Piece Zero: The Foundation (Claude Code only)
 
 Before adding any MCP servers, install this first. Every MCP server you add dumps its full tool schema into the context window on every message. With 5 servers, that's 20-50k tokens of tool descriptions eating your context before you even type anything. mcp2cli eliminates this overhead entirely.
 
 | Piece | What It Does | Token Savings |
 | :--- | :--- | :--- |
-| **[mcp2cli](https://github.com/myeolinmalchi/mcp2cli)** | Converts MCP servers into CLI tools so their schemas aren't loaded into context. Without this, the other 5 pieces ironically add their own token bloat. | 96-99% on tool schema overhead |
+| **[mcp2cli](https://github.com/myeolinmalchi/mcp2cli)** | Claude Code plugin that converts MCP servers into CLI tools so their schemas aren't loaded into context. Without this, the other 5 pieces ironically add their own token bloat. | 96-99% on tool schema overhead |
+
+> **Note:** mcp2cli is a Claude Code plugin. Cursor, Windsurf, and other agents benefit from the other 5 pieces but don't support this plugin.
 
 ## 🧩 The Five Pieces
 
@@ -46,14 +48,23 @@ The result: significantly more messages per rate-limit window, and longer produc
 - **Node.js 18+** with `npx` (for Codebase-Memory and AI-Distiller)
 - **Rust toolchain** (for RTK) — or use the pre-built binary
 
-### 1. Configure MCP Servers
+### 1. Install Piece Zero (Claude Code users)
+
+```bash
+git clone https://github.com/myeolinmalchi/mcp2cli.git
+claude --plugin-dir ./mcp2cli
+```
+
+Then use `/convert` in Claude Code to transform your MCP servers into token-efficient CLI tools.
+
+### 2. Configure MCP Servers
 
 Copy the contents of `mcp_config.json` into your agent's MCP settings:
 - **Claude Code**: `~/.claude/settings.json` under `mcpServers`
 - **Cursor**: Settings → MCP
 - **Windsurf**: `.windsurf/mcp.json`
 
-### 2. Install RTK
+### 3. Install RTK
 
 ```bash
 ./install_exodia.sh
@@ -71,7 +82,7 @@ rtk pytest -v
 rtk cargo build
 ```
 
-### 3. Add the Policy File
+### 4. Add the Policy File
 
 Copy the contents of `policy.md` into your project's instruction file:
 - `CLAUDE.md` (for Claude Code)
