@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 
 echo "✦ EXODIA: Installing the AI Optimization Stack"
 echo ""

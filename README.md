@@ -56,19 +56,11 @@ The result: significantly more messages per rate-limit window, and longer produc
 
 ## 🚀 Quick Start
 
-### One-Command Install (Claude Code)
+### Manual Install
 
 ```bash
 git clone https://github.com/reni10/exodia-stack.git && cd exodia-stack && ./install_exodia.sh
 ```
-
-This automatically:
-- Installs mcp2cli (Piece Zero)
-- Registers all 4 MCP servers with Claude Code via `claude mcp add-json`
-- Installs RTK via cargo
-- Checks all prerequisites (uvx, npx, Rust)
-
-Then just restart Claude Code and you're done. Or tell Claude Code: **"Look at this repo and install the EXODIA stack to help me save tokens: https://github.com/reni10/exodia-stack"**
 
 ### Other Agents (Cursor, Windsurf, Copilot, Codex)
 
@@ -91,7 +83,7 @@ rtk pytest -v
 rtk cargo build
 ```
 
-## ⚡ First-Time Indexing
+## 📇 First-Time Indexing
 
 Before EXODIA can protect your context window, it needs to build its indexes:
 
