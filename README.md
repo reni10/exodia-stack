@@ -2,6 +2,14 @@
 
 Exodia is a zero-waste development configuration for agentic AI coding assistants like **Claude Code**, **Cursor**, **Windsurf**, **Copilot**, **OpenAI Codex**, and **Antigravity**. It combines five MCP servers plus a CLI proxy to reduce token bloat, prevent context collapse, and cut costs — particularly valuable for developers on the **Claude Pro $20/month plan** who need to make every token count.
 
+### The easiest way to install: just ask your agent.
+
+Paste this into Claude Code, Codex, or any agentic coding assistant:
+
+> **"Look at this repo and install the EXODIA stack to save me tokens: https://github.com/stefmat10/exodia-stack"**
+
+Your agent will read the repo, run the install script, register the MCP servers, and set everything up for you. No manual steps needed.
+
 ## 🔮 Piece Zero: The Foundation (Claude Code only)
 
 Before adding any MCP servers, install this first. Every MCP server you add dumps its full tool schema into the context window on every message. With 5 servers, that's 20-50k tokens of tool descriptions eating your context before you even type anything. mcp2cli eliminates this overhead entirely.
