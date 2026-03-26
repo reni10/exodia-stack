@@ -54,6 +54,22 @@ Before EXODIA can protect your context window, it must build its mental models. 
 ---
 *Once indexed, EXODIA will track changes incrementally. You only have to "Awaken" it once.*
 
+## 🛡️ Myth-Busting: Coding on the $20 Plan
+
+Many developers believe the **Claude Pro ($20/mo)** plan is too restrictive for "real" coding. They hit the ~44k token window limit in 5 messages and give up. **EXODIA was built to solve this.**
+
+### The Comparison: Refactoring a Complex UI
+
+| Feature | The "Naive" Way (No Exodia) | The "Exodia" Way |
+| :--- | :--- | :--- |
+| **Startup Overhead** | ~16k - 23k tokens (Full project scan) | **< 1k tokens** (JCodeMunch Index) |
+| **Finding a Function** | `grep` + Reading 5 full files (~12k tokens) | **500 tokens** (Serena / Outline) |
+| **Error Debugging** | Dumping 500 lines of build logs (~10k tokens) | **800 tokens** (RTK + AI-Distiller) |
+| **Endurance** | **3-5 messages** before "Limit Reached" | **40-60 messages** per 5-hr window |
+
+### The Secret: Surgical Context
+On the $20 plan, **Context is Currency.** The naive way spends your whole "budget" just trying to find the right file. EXODIA ensures that 95% of your tokens are spent on **Generating Solutions**, not "Looking Around."
+
 ## 📊 Performance
 
 ### 1. Configure MCP Servers
