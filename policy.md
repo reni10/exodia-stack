@@ -1,27 +1,35 @@
-# ✦ EXODIA Code Stewardship Policy
+# EXODIA Code Stewardship Policy
 
-This policy is **mandatory** for all AI agents working in this repository. Its goal is to prevent the "Death by 1,000 Tokens"—where unoptimized search and discovery commands bloat the context window until the AI becomes unreliable.
+This policy guides AI agents to minimize token waste. Copy it into your CLAUDE.md, .cursorrules, or agents.md file.
 
-## ⚖️ The Tenets of Exodia
+## Tool Preferences
 
-### 1. No Blind Searching
-🚨 **PROHIBITION: NEVER use `grep_search`, `find_by_name`, or `ls -R`. EVER.** 🚨
-Instead, use **jCodeMunch** (`search_symbols`, `search_text`) to find what you need with structural intelligence.
+When EXODIA MCP servers are available, prefer them over brute-force alternatives:
 
-### 2. Semantic Precision
-- Use **Serena (LSP)** for "Find All References" and "Go to Definition."
-- Do not guess imports or jump between files manually to find usages—query the graph.
+### Code Reading
+- **Prefer** jCodeMunch `search_symbols` / `get_file_outline` to retrieve specific functions, classes, or types.
+- **Avoid** reading entire files when you only need one symbol. A 500-line file costs ~3,800 tokens; a single symbol costs ~700.
+- Built-in tools (Read, Grep, Glob) are fine for small files or when jCodeMunch doesn't have what you need.
 
-### 3. Structural Memory
-- Consult the **Codebase-Memory** knowledge graph to understand cross-file relationships (e.g., how the `HeroScore` in the UI maps to the `LifeCapitalProfile` in the backend).
+### Code Navigation
+- **Prefer** Serena for Go-to-Definition and Find-All-References when tracing how a function is used across the codebase.
+- **Avoid** grepping for function names across dozens of files when an LSP query gives precise results.
 
-### 4. Zero-Waste Terminal
-🚨 **PROHIBITION: NEVER run a build, lint, or prisma command directly.** 🚨
-- Prefix all verbose commands with the **RTK (Rust Token Killer)** wrapper.
-- Use **AI-Distiller** to summarize any large outputs that *must* be seen.
+### Architecture Understanding
+- **Prefer** Codebase-Memory to understand module relationships, dependency graphs, and cross-service connections.
+- **Avoid** reading 10+ files just to understand how the app is structured.
 
-### 5. Index-First Discovery
-- When entering a new module, use `get_file_tree` or `get_file_outline` before reading individual lines. Understand the shape before the content.
+### Terminal Output
+- **Prefer** prefixing verbose commands with `rtk` (e.g., `rtk npm run build`, `rtk pytest -v`).
+- **Avoid** dumping raw build/test output into context. A failed build log can waste 10,000+ tokens when RTK compresses it to ~800.
+- Use AI-Distiller for outputs that must be seen in full but can be summarized.
 
----
-*Failure to follow the EXODIA policy leads to context collapse. Stay sharp. Stay zero-waste.*
+### Discovery
+- When entering an unfamiliar module, start with `get_file_outline` or `get_file_tree` to understand the structure before reading individual files.
+
+## What NOT to Do
+
+- Don't read entire files to find one function — use jCodeMunch.
+- Don't run verbose commands without RTK — compress first.
+- Don't guess at architecture — query the knowledge graph.
+- Don't ignore these tools and fall back to brute-force reading when the structured tools are available.

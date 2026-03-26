@@ -1,26 +1,66 @@
 #!/bin/bash
 set -e
 
-# EXODIA: RTK (Rust Token Killer) Installer
-# This script sets up the mandatory terminal wrapper for the Exodia stack.
+echo "✦ EXODIA: Installing the AI Optimization Stack"
+echo ""
 
-# 1. Create the .bin directory
-mkdir -p .bin
-
-# 2. Setup the RTK wrapper (simple version for portability)
-# Replace this with the actual rtk binary or its path in your local configuration.
-# For now, this points to our existing binary:
-if [ -f "/Users/smatteji/retirewise-ai/.bin/rtk" ]; then
-    cp "/Users/smatteji/retirewise-ai/.bin/rtk" .bin/rtk
-    chmod +x .bin/rtk
-    echo "✦ EXODIA: RTK binary successfully installed to .bin/rtk"
+# --- Piece Zero: mcp2cli (Claude Code only) ---
+if command -v claude &>/dev/null; then
+  echo "→ Installing mcp2cli (Piece Zero)..."
+  if [ ! -d "$HOME/.exodia/mcp2cli" ]; then
+    git clone https://github.com/myeolinmalchi/mcp2cli.git "$HOME/.exodia/mcp2cli" 2>/dev/null
+    echo "  ✓ mcp2cli cloned to ~/.exodia/mcp2cli"
+    echo "  → Run: claude --plugin-dir ~/.exodia/mcp2cli"
+  else
+    echo "  ✓ mcp2cli already installed"
+  fi
 else
-    echo "⚠️  RTK binary not found. Please install the Rust Token Killer before proceeding."
-    exit 1
+  echo "→ Skipping mcp2cli (Claude Code not found)"
 fi
 
-# 3. Final instructions
+# --- RTK (Rust Token Killer) ---
+echo "→ Installing RTK..."
+if command -v rtk &>/dev/null; then
+  echo "  ✓ RTK already installed ($(rtk --version 2>/dev/null || echo 'unknown version'))"
+elif command -v cargo &>/dev/null; then
+  cargo install rtk
+  echo "  ✓ RTK installed via cargo"
+else
+  echo "  ⚠ RTK requires Rust. Install Rust first: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
+  echo "  Then run: cargo install rtk"
+fi
+
+# --- Python MCP servers (jCodeMunch + Serena) ---
+echo "→ Checking Python MCP servers..."
+if command -v uvx &>/dev/null; then
+  echo "  ✓ uvx available — jCodeMunch and Serena will install on first use"
+else
+  echo "  ⚠ uvx not found. Install uv first: curl -LsSf https://astral.sh/uv/install.sh | sh"
+fi
+
+# --- Node MCP servers (Codebase-Memory + AI-Distiller) ---
+echo "→ Checking Node MCP servers..."
+if command -v npx &>/dev/null; then
+  echo "  ✓ npx available — Codebase-Memory and AI-Distiller will install on first use"
+else
+  echo "  ⚠ npx not found. Install Node.js 18+: https://nodejs.org"
+fi
+
+# --- Configure MCP servers ---
 echo ""
-echo "✦ EXODIA: Summoning complete. You are now protected from context bloat."
-echo "✦ NEXT: Point your mcp_config.json to this directory and add 'policy.md' to your instructions."
+echo "→ MCP Configuration"
+echo "  Copy the contents of mcp_config.json into your agent's settings:"
+echo "  • Claude Code: ~/.claude/settings.json under mcpServers"
+echo "  • Cursor: Settings → MCP"
+echo "  • Windsurf: .windsurf/mcp.json"
+
+# --- Policy ---
 echo ""
+echo "→ Policy"
+echo "  Copy the contents of policy.md into your project's:"
+echo "  • CLAUDE.md (Claude Code)"
+echo "  • .cursorrules (Cursor)"
+echo "  • agents.md (other agents)"
+
+echo ""
+echo "✦ EXODIA: Installation complete. Summon the stack and build without bloat."
