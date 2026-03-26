@@ -1,6 +1,6 @@
 # ✦ EXODIA: The Five-Piece AI Optimization Stack
 
-Exodia is a zero-waste development configuration for agentic AI coding assistants like **Claude Code**, **Cursor**, **Windsurf**, and **Copilot**. It combines five Model Context Protocol (MCP) servers to reduce token bloat, prevent context collapse, and cut costs — particularly valuable for developers on the **Claude Pro $20/month plan** who need to make every token count.
+Exodia is a zero-waste development configuration for agentic AI coding assistants like **Claude Code**, **Cursor**, **Windsurf**, **Copilot**, **OpenAI Codex**, and **Antigravity**. It combines five Model Context Protocol (MCP) servers to reduce token bloat, prevent context collapse, and cut costs — particularly valuable for developers on the **Claude Pro $20/month plan** who need to make every token count.
 
 ## 🧩 The Five Pieces
 
