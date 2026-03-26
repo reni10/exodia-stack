@@ -12,6 +12,16 @@ To "summon" the full power of Exodia, you must integrate all five components:
 4.  **AI-Distiller**: Real-time compression of terminal logs and verbose outputs.
 5.  **RTK (Rust Token Killer)**: A mandatory terminal wrapper that prunes noise before it hits the context window.
 
+## 🏆 Credits & Components
+
+The EXODIA stack is a curation of the best zero-waste tools in the agentic ecosystem. Credit goes to the original creators:
+
+*   **[jCodeMunch](https://github.com/jgravelle/jcodemunch-mcp)** by [J. Gravelle](https://github.com/jgravelle).
+*   **[Serena](https://github.com/oraios/serena)** by [Oraios AI](https://github.com/oraios).
+*   **[Codebase-Memory](https://github.com/DeusData/codebase-memory-mcp)** by [DeusData](https://github.com/DeusData).
+*   **[AI-Distiller](https://github.com/janreges/ai-distiller-mcp)** by [Jan Reges](https://github.com/janreges).
+*   **[RTK (Rust Token Killer)](https://github.com/mintlify/rtk)** 
+
 ## 🚀 Quick Start
 
 ### 1. Configure MCP Servers
