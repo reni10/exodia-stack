@@ -42,54 +42,40 @@ The result: significantly more messages per rate-limit window, and longer produc
 
 ## 🚀 Quick Start
 
+### One-Command Install (Claude Code)
+
+```bash
+git clone https://github.com/stefmat10/exodia-stack.git && cd exodia-stack && ./install_exodia.sh
+```
+
+This automatically:
+- Installs mcp2cli (Piece Zero)
+- Registers all 4 MCP servers with Claude Code via `claude mcp add-json`
+- Installs RTK via cargo
+- Checks all prerequisites (uvx, npx, Rust)
+
+Then just restart Claude Code and you're done. Or tell Claude Code: **"Look at this repo and install the EXODIA stack to help me save tokens: https://github.com/stefmat10/exodia-stack"**
+
+### Other Agents (Cursor, Windsurf, Copilot, Codex)
+
+1. Copy the contents of `mcp_config.json` into your agent's MCP settings
+2. Install RTK: `cargo install rtk`
+3. Copy `policy.md` into your project's `.cursorrules` or `agents.md`
+
 ### Prerequisites
 
 - **Python 3.8+** with `uvx` (for jCodeMunch and Serena)
 - **Node.js 18+** with `npx` (for Codebase-Memory and AI-Distiller)
 - **Rust toolchain** (for RTK) — or use the pre-built binary
 
-### 1. Install Piece Zero (Claude Code users)
+### Using RTK
 
-```bash
-git clone https://github.com/myeolinmalchi/mcp2cli.git
-claude --plugin-dir ./mcp2cli
-```
-
-Then use `/convert` in Claude Code to transform your MCP servers into token-efficient CLI tools.
-
-### 2. Configure MCP Servers
-
-Copy the contents of `mcp_config.json` into your agent's MCP settings:
-- **Claude Code**: `~/.claude/settings.json` under `mcpServers`
-- **Cursor**: Settings → MCP
-- **Windsurf**: `.windsurf/mcp.json`
-
-### 3. Run the Installer
-
-```bash
-./install_exodia.sh
-```
-
-This checks all prerequisites, installs RTK via cargo, and guides you through the remaining setup. Or install RTK manually:
-```bash
-cargo install rtk
-```
-
-Then prefix verbose commands:
+Prefix verbose commands to compress their output:
 ```bash
 rtk npm run build
 rtk pytest -v
 rtk cargo build
 ```
-
-### 4. Add the Policy File
-
-Copy the contents of `policy.md` into your project's instruction file:
-- `CLAUDE.md` (for Claude Code)
-- `.cursorrules` (for Cursor)
-- `agents.md` (for other agents)
-
-This tells the agent to prefer EXODIA tools over brute-force file reading.
 
 ## ⚡ First-Time Indexing
 

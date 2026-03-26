@@ -6,6 +6,8 @@ echo ""
 
 # --- Piece Zero: mcp2cli (Claude Code only) ---
 if command -v claude &>/dev/null; then
+  echo "→ Claude Code detected"
+
   echo "→ Installing mcp2cli (Piece Zero)..."
   if [ ! -d "$HOME/.exodia/mcp2cli" ]; then
     git clone https://github.com/myeolinmalchi/mcp2cli.git "$HOME/.exodia/mcp2cli" 2>/dev/null
@@ -14,53 +16,74 @@ if command -v claude &>/dev/null; then
   else
     echo "  ✓ mcp2cli already installed"
   fi
+
+  # --- Register MCP servers with Claude Code ---
+  echo "→ Registering MCP servers with Claude Code..."
+
+  claude mcp add-json jcodemunch '{"command":"uvx","args":["jcodemunch-mcp"],"env":{"JCODEMUNCH_USE_AI_SUMMARIES":"true"}}' -s user 2>/dev/null && \
+    echo "  ✓ jCodeMunch registered" || echo "  ⚠ jCodeMunch already registered or failed"
+
+  claude mcp add-json serena '{"command":"uvx","args":["--from","git+https://github.com/oraios/serena","serena","start-mcp-server"]}' -s user 2>/dev/null && \
+    echo "  ✓ Serena registered" || echo "  ⚠ Serena already registered or failed"
+
+  claude mcp add-json codebase-memory '{"command":"npx","args":["-y","codebase-memory-mcp"]}' -s user 2>/dev/null && \
+    echo "  ✓ Codebase-Memory registered" || echo "  ⚠ Codebase-Memory already registered or failed"
+
+  claude mcp add-json distill '{"command":"npx","args":["-y","@janreges/ai-distiller-mcp"]}' -s user 2>/dev/null && \
+    echo "  ✓ AI-Distiller registered" || echo "  ⚠ AI-Distiller already registered or failed"
+
+  echo ""
+  echo "  ✓ All MCP servers registered. They'll be available on next Claude Code session."
+
 else
-  echo "→ Skipping mcp2cli (Claude Code not found)"
+  echo "→ Claude Code not found — skipping mcp2cli and auto-registration"
+  echo "  Copy mcp_config.json into your agent's settings manually:"
+  echo "  • Cursor: Settings → MCP"
+  echo "  • Windsurf: .windsurf/mcp.json"
+  echo "  • Copilot/Codex: check your agent's MCP docs"
 fi
 
 # --- RTK (Rust Token Killer) ---
+echo ""
 echo "→ Installing RTK..."
 if command -v rtk &>/dev/null; then
   echo "  ✓ RTK already installed ($(rtk --version 2>/dev/null || echo 'unknown version'))"
 elif command -v cargo &>/dev/null; then
-  cargo install rtk
-  echo "  ✓ RTK installed via cargo"
+  echo "  Installing via cargo (this may take a minute)..."
+  cargo install rtk 2>/dev/null
+  echo "  ✓ RTK installed"
 else
-  echo "  ⚠ RTK requires Rust. Install Rust first: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
+  echo "  ⚠ RTK requires Rust. Install Rust first:"
+  echo "    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
   echo "  Then run: cargo install rtk"
 fi
 
-# --- Python MCP servers (jCodeMunch + Serena) ---
-echo "→ Checking Python MCP servers..."
+# --- Check prerequisites ---
+echo ""
+echo "→ Checking prerequisites..."
+MISSING=0
 if command -v uvx &>/dev/null; then
-  echo "  ✓ uvx available — jCodeMunch and Serena will install on first use"
+  echo "  ✓ uvx (Python) — jCodeMunch and Serena ready"
 else
-  echo "  ⚠ uvx not found. Install uv first: curl -LsSf https://astral.sh/uv/install.sh | sh"
+  echo "  ⚠ uvx not found — install uv: curl -LsSf https://astral.sh/uv/install.sh | sh"
+  MISSING=1
 fi
-
-# --- Node MCP servers (Codebase-Memory + AI-Distiller) ---
-echo "→ Checking Node MCP servers..."
 if command -v npx &>/dev/null; then
-  echo "  ✓ npx available — Codebase-Memory and AI-Distiller will install on first use"
+  echo "  ✓ npx (Node) — Codebase-Memory and AI-Distiller ready"
 else
-  echo "  ⚠ npx not found. Install Node.js 18+: https://nodejs.org"
+  echo "  ⚠ npx not found — install Node.js 18+: https://nodejs.org"
+  MISSING=1
 fi
 
-# --- Configure MCP servers ---
+# --- Policy reminder ---
 echo ""
-echo "→ MCP Configuration"
-echo "  Copy the contents of mcp_config.json into your agent's settings:"
-echo "  • Claude Code: ~/.claude/settings.json under mcpServers"
-echo "  • Cursor: Settings → MCP"
-echo "  • Windsurf: .windsurf/mcp.json"
-
-# --- Policy ---
-echo ""
-echo "→ Policy"
-echo "  Copy the contents of policy.md into your project's:"
-echo "  • CLAUDE.md (Claude Code)"
-echo "  • .cursorrules (Cursor)"
-echo "  • agents.md (other agents)"
+echo "→ Final step: Add the EXODIA policy to your project"
+echo "  Copy policy.md into your project's CLAUDE.md, .cursorrules, or agents.md"
+echo "  This teaches the agent to prefer EXODIA tools over brute-force file reading."
 
 echo ""
-echo "✦ EXODIA: Installation complete. Summon the stack and build without bloat."
+if [ "$MISSING" -eq 0 ]; then
+  echo "✦ EXODIA: Installation complete. Restart your agent to activate."
+else
+  echo "✦ EXODIA: Partially installed. Fix the warnings above, then restart your agent."
+fi
