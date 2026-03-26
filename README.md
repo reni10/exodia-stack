@@ -1,6 +1,6 @@
 # ✦ EXODIA: The Complete AI Optimization Stack
 
-Exodia is a zero-waste development configuration for agentic AI coding assistants like **Claude Code**, **Cursor**, **Windsurf**, **Copilot**, **OpenAI Codex**, and **Antigravity**. It combines six tools to reduce token bloat, prevent context collapse, and cut costs — particularly valuable for developers on the **Claude Pro $20/month plan** who need to make every token count.
+Exodia is a zero-waste development configuration for agentic AI coding assistants like **Claude Code**, **Cursor**, **Windsurf**, **Copilot**, **OpenAI Codex**, and **Antigravity**. It combines five MCP servers plus a CLI proxy to reduce token bloat, prevent context collapse, and cut costs — particularly valuable for developers on the **Claude Pro $20/month plan** who need to make every token count.
 
 ## 🔮 Piece Zero: The Foundation (Claude Code only)
 
@@ -64,13 +64,13 @@ Copy the contents of `mcp_config.json` into your agent's MCP settings:
 - **Cursor**: Settings → MCP
 - **Windsurf**: `.windsurf/mcp.json`
 
-### 3. Install RTK
+### 3. Run the Installer
 
 ```bash
 ./install_exodia.sh
 ```
 
-Or install RTK manually:
+This checks all prerequisites, installs RTK via cargo, and guides you through the remaining setup. Or install RTK manually:
 ```bash
 cargo install rtk
 ```
@@ -118,7 +118,8 @@ Instead of the agent reading 20 files to understand how your app is structured, 
 - **jCodeMunch** indexing can take a minute on very large repos (100k+ files). Incremental updates are fast after that.
 - **RTK** requires Rust to compile from source. Pre-built binaries are available for macOS and Linux.
 - **AI-Distiller** adds the most value on very verbose outputs (build logs, test suites). For short commands, the overhead isn't worth it.
-- The stack adds 4 MCP server processes to your system. On resource-constrained machines, start with just **jCodeMunch + RTK** for the biggest impact with the least overhead.
+- The full stack adds 4 MCP server processes to your system. On resource-constrained machines, start with just **jCodeMunch + RTK** for the biggest impact with the least overhead.
+- **mcp2cli** is Claude Code only — other agents don't support plugins but still benefit from the 5 MCP servers.
 
 ## 🏆 Credits
 
