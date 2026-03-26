@@ -1,94 +1,116 @@
 # ✦ EXODIA: The Five-Piece AI Optimization Stack
 
-Exodia is a "zero-waste" development configuration designed for power-users of agentic AI coding assistants (like Antigravity, Claude Engineer, etc.). It combines five specific Model Context Protocol (MCP) servers to drastically reduce token bloat, prevent context collapse, and slash API costs by up to 80%.
+Exodia is a zero-waste development configuration for agentic AI coding assistants like **Claude Code**, **Cursor**, **Windsurf**, and **Copilot**. It combines five Model Context Protocol (MCP) servers to reduce token bloat, prevent context collapse, and cut costs — particularly valuable for developers on the **Claude Pro $20/month plan** who need to make every token count.
 
 ## 🧩 The Five Pieces
 
-To "summon" the full power of Exodia, you must integrate all five components:
+All five components work together, but each delivers value independently:
 
-1.  **jCodeMunch**: Structural project indexing (replaces expensive `cat` and `grep` calls).
-2.  **Serena (LSP)**: Semantic navigation (Go-to-Definition / Find-All-References).
-3.  **Codebase-Memory**: Institutional architectural knowledge graph.
-4.  **AI-Distiller**: Real-time compression of terminal logs and verbose outputs.
-5.  **RTK (Rust Token Killer)**: A mandatory terminal wrapper that prunes noise before it hits the context window.
-
-## 🏆 Credits & Components
-
-The EXODIA stack is a curation of the best zero-waste tools in the agentic ecosystem. Credit goes to the original creators:
-
-*   **[jCodeMunch](https://github.com/jgravelle/jcodemunch-mcp)** by [J. Gravelle](https://github.com/jgravelle).
-*   **[Serena](https://github.com/oraios/serena)** by [Oraios AI](https://github.com/oraios).
-*   **[Codebase-Memory](https://github.com/DeusData/codebase-memory-mcp)** by [DeusData](https://github.com/DeusData).
-*   **[AI-Distiller](https://github.com/janreges/ai-distiller)** by [Jan Reges](https://github.com/janreges).
-*   **[RTK (Rust Token Killer)](https://github.com/rtk-ai/rtk)** 
-
-## 🔮 Integration Guide: Summoning the Stack
-
-The EXODIA stack is designed for high-performance coding agents like **Antigravity**, **Claude Code**, and **Cursor**. To use it to its full potential, follow these integration patterns:
-
-### 1. The Instruction Layer (`agents.md` / `claude.md`)
-Most advanced agents look for a "contract" or "policy" file. You MUST copy the contents of `policy.md` into one of the following files in your project root:
-*   `agents.md` (for Antigravity/General Agents)
-*   `claude.md` (for Claude Code)
-*   `.cursorrules` (for Cursor)
-*   `.agent/instructions.md` (for generic agentic workflows)
-
-### 2. Zero-Waste Scripting
-Always prefix your commands. Instead of running `npm run build`, use:
-```bash
-.bin/rtk npm run build
-```
-This ensures that if the build fails, the agent only sees a **distilled summary** of the errors instead of 5,000 lines of junk that would crash your context window.
-
-### 3. Structural Discovery
-Before asking an agent to "find where X is used," remind it: **"Use your jCodeMunch/Serena tools to map the graph first."** This prevents the agent from falling back to expensive `grep` searches.
-
-## ⚡ The Awakening: First-Time Indexing
-
-Before EXODIA can protect your context window, it must build its mental models. Perform these three "init" steps upon first install:
-
-1.  **jCodeMunch Indexing**: Prompt the agent to run `mcp_jcodemunch_index_folder`. This creates the symbol map (classes, functions, types).
-2.  **Codebase-Memory Scan**: Prompt the agent to scan the project using `Codebase-Memory` to identify architectural patterns (Controller-Service-Repo mappings).
-3.  **Serena Warmup**: Ask the agent to perform a "deep reference check" on a core module to verify the LSP server is properly mapping the graph.
-
----
-*Once indexed, EXODIA will track changes incrementally. You only have to "Awaken" it once.*
-
-## 🛡️ Myth-Busting: Coding on the $20 Plan
-
-Many developers believe the **Claude Pro ($20/mo)** plan is too restrictive for "real" coding. They hit the ~44k token window limit in 5 messages and give up. **EXODIA was built to solve this.**
-
-### The Comparison: Refactoring a Complex UI
-
-| Feature | The "Naive" Way (No Exodia) | The "Exodia" Way |
+| Piece | What It Does | Token Savings |
 | :--- | :--- | :--- |
-| **Startup Overhead** | ~16k - 23k tokens (Full project scan) | **< 1k tokens** (JCodeMunch Index) |
-| **Finding a Function** | `grep` + Reading 5 full files (~12k tokens) | **500 tokens** (Serena / Outline) |
-| **Error Debugging** | Dumping 500 lines of build logs (~10k tokens) | **800 tokens** (RTK + AI-Distiller) |
-| **Endurance** | **3-5 messages** before "Limit Reached" | **40-60 messages** per 5-hr window |
+| **[jCodeMunch](https://github.com/jgravelle/jcodemunch-mcp)** | Structural project indexing via tree-sitter AST. Returns exact symbols instead of entire files. | 80-95% on code reading |
+| **[Serena (LSP)](https://github.com/oraios/serena)** | Semantic navigation — Go-to-Definition, Find-All-References via Language Server Protocol. | 60-70% on code navigation |
+| **[Codebase-Memory](https://github.com/DeusData/codebase-memory-mcp)** | Persistent knowledge graph of your codebase architecture. 64 languages, sub-ms queries. | 70-90% on architecture discovery |
+| **[AI-Distiller](https://github.com/janreges/ai-distiller)** | Real-time compression of verbose terminal outputs. | 50-80% on log/output parsing |
+| **[RTK (Rust Token Killer)](https://github.com/rtk-ai/rtk)** | CLI proxy that compresses command output before it hits the context window. Single Rust binary. | 60-90% on command outputs |
 
-### The Secret: Surgical Context
-On the $20 plan, **Context is Currency.** The naive way spends your whole "budget" just trying to find the right file. EXODIA ensures that 95% of your tokens are spent on **Generating Solutions**, not "Looking Around."
+## 🛡️ Why This Matters: Coding on the $20 Plan
 
-## 📊 Performance
+The Claude Pro plan has a usage-based rate limit per 5-hour window. Without optimization, agents waste most of your token budget on **reading files and parsing output** rather than **writing code**. EXODIA flips that ratio.
+
+### The Comparison
+
+| Operation | Without Exodia | With Exodia |
+| :--- | :--- | :--- |
+| **Reading a function** | Read entire 500-line file (~3,800 tokens) | Retrieve exact symbol (~700 tokens) |
+| **Finding all usages** | `grep` + read 5 files (~12,000 tokens) | LSP Find-All-References (~500 tokens) |
+| **Build error debugging** | 500 lines of raw output (~10,000 tokens) | Compressed summary (~800 tokens) |
+| **`git push` output** | ~200 tokens | ~10 tokens |
+| **`pytest` (33 tests)** | ~756 tokens | ~24 tokens |
+
+The result: significantly more messages per rate-limit window, and longer productive sessions before you hit the wall.
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- **Python 3.8+** with `uvx` (for jCodeMunch and Serena)
+- **Node.js 18+** with `npx` (for Codebase-Memory and AI-Distiller)
+- **Rust toolchain** (for RTK) — or use the pre-built binary
 
 ### 1. Configure MCP Servers
-Copy the contents of `mcp_config.json` into your IDE's MCP settings.
+
+Copy the contents of `mcp_config.json` into your agent's MCP settings:
+- **Claude Code**: `~/.claude/settings.json` under `mcpServers`
+- **Cursor**: Settings → MCP
+- **Windsurf**: `.windsurf/mcp.json`
 
 ### 2. Install RTK
-Run the installation script to set up the Rust Token Killer in your path:
+
 ```bash
-./install_rtk.sh
+./install_exodia.sh
 ```
 
-### 3. Enforce the Policy
-Add the `EXODIA Code Stewardship Policy` (found in `policy.md`) to your project's `.cursorrules`, `agents.md`, or AI instructions file.
+Or install RTK manually:
+```bash
+cargo install rtk
+```
 
-## 📊 Performance
-In a typical React/Next.js dashboard overhaul, Exodia has demonstrated:
-*   **5.5M+ tokens saved** per 1,000 operations.
-*   **$20 - $60 cost savings** per session.
-*   **10x higher reliability** in complex refactoring tasks.
+Then prefix verbose commands:
+```bash
+rtk npm run build
+rtk pytest -v
+rtk cargo build
+```
+
+### 3. Add the Policy File
+
+Copy the contents of `policy.md` into your project's instruction file:
+- `CLAUDE.md` (for Claude Code)
+- `.cursorrules` (for Cursor)
+- `agents.md` (for other agents)
+
+This tells the agent to prefer EXODIA tools over brute-force file reading.
+
+## ⚡ First-Time Indexing
+
+Before EXODIA can protect your context window, it needs to build its indexes:
+
+1. **jCodeMunch**: Ask your agent to run `mcp_jcodemunch_index_folder` — creates the symbol map (classes, functions, types).
+2. **Codebase-Memory**: Ask the agent to scan the project — builds the architectural knowledge graph.
+3. **Serena**: Ask the agent to perform a reference check on a core module — verifies the LSP is mapping correctly.
+
+Once indexed, all three track changes incrementally. You only do this once per project.
+
+## 🔮 Integration Tips
+
+### Structural Discovery
+Before asking an agent to "find where X is used," prompt it: **"Use jCodeMunch/Serena to look this up."** This prevents fallback to expensive `grep` + full file reads.
+
+### Zero-Waste Debugging
+When a build fails, the agent normally dumps the entire error log into context. With RTK, it only sees a compressed summary of what actually went wrong.
+
+### Architecture Questions
+Instead of the agent reading 20 files to understand how your app is structured, Codebase-Memory provides the dependency graph and module relationships in a single query.
+
+## ⚠️ Known Limitations
+
+- **Serena** works best with Python, TypeScript/JavaScript, Go, Rust, and Java. Other languages have partial LSP support.
+- **jCodeMunch** indexing can take a minute on very large repos (100k+ files). Incremental updates are fast after that.
+- **RTK** requires Rust to compile from source. Pre-built binaries are available for macOS and Linux.
+- **AI-Distiller** adds the most value on very verbose outputs (build logs, test suites). For short commands, the overhead isn't worth it.
+- The stack adds 4 MCP server processes to your system. On resource-constrained machines, start with just **jCodeMunch + RTK** for the biggest impact with the least overhead.
+
+## 🏆 Credits
+
+EXODIA is a curation of the best zero-waste tools in the agentic ecosystem. Full credit to the original creators:
+
+- **[jCodeMunch](https://github.com/jgravelle/jcodemunch-mcp)** by [J. Gravelle](https://github.com/jgravelle)
+- **[Serena](https://github.com/oraios/serena)** by [Oraios AI](https://github.com/oraios)
+- **[Codebase-Memory](https://github.com/DeusData/codebase-memory-mcp)** by [DeusData](https://github.com/DeusData)
+- **[AI-Distiller](https://github.com/janreges/ai-distiller)** by [Jan Reges](https://github.com/janreges)
+- **[RTK](https://github.com/rtk-ai/rtk)** by [RTK AI](https://github.com/rtk-ai)
 
 ## ⚖️ License
+
 MIT. Go forth and build without bloat.
