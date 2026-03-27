@@ -76,7 +76,7 @@ else
   MISSING=1
 fi
 if command -v npx &>/dev/null; then
-  echo "  ✓ npx (Node) — Codebase-Memory and AI-Distiller ready"
+  echo "  ✓ npx (Node) — AI-Distiller ready"
 else
   echo "  ⚠ npx not found — install Node.js 18+: https://nodejs.org"
   MISSING=1
