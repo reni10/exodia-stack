@@ -22,7 +22,7 @@
       "command": "npx",
       "args": [
         "-y",
-        "codebase-memory-mcp"
+        "@exaudeus/memory-mcp"
       ]
     },
     "distill": {

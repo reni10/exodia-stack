@@ -25,7 +25,7 @@ if command -v claude &>/dev/null; then
   claude mcp add-json serena '{"command":"uvx","args":["--from","git+https://github.com/oraios/serena","serena","start-mcp-server"]}' -s user 2>/dev/null && \
     echo "  ✓ Serena registered" || echo "  ⚠ Serena already registered or failed"
 
-  claude mcp add-json codebase-memory '{"command":"npx","args":["-y","codebase-memory-mcp"]}' -s user 2>/dev/null && \
+  claude mcp add-json codebase-memory '{"command":"npx","args":["-y","@exaudeus/memory-mcp"]}' -s user 2>/dev/null && \
     echo "  ✓ Codebase-Memory registered" || echo "  ⚠ Codebase-Memory already registered or failed"
 
   claude mcp add-json distill '{"command":"npx","args":["-y","@janreges/ai-distiller-mcp"]}' -s user 2>/dev/null && \
