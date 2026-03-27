@@ -44,17 +44,19 @@ fi
 
 # --- RTK (Rust Token Killer) ---
 echo ""
-echo "→ Installing RTK..."
-if command -v rtk &>/dev/null; then
+echo "→ Installing RTK (Rust Token Killer)..."
+if command -v rtk &>/dev/null && rtk gain &>/dev/null; then
   echo "  ✓ RTK already installed ($(rtk --version 2>/dev/null || echo 'unknown version'))"
+elif command -v brew &>/dev/null; then
+  brew install rtk
+  echo "  ✓ RTK installed via Homebrew"
 elif command -v cargo &>/dev/null; then
   echo "  Installing via cargo (this may take a minute)..."
-  cargo install rtk 2>/dev/null
+  cargo install --git https://github.com/rtk-ai/rtk 2>/dev/null
   echo "  ✓ RTK installed"
 else
-  echo "  ⚠ RTK requires Rust. Install Rust first:"
-  echo "    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
-  echo "  Then run: cargo install rtk"
+  echo "  Installing via quick install script..."
+  curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sh
 fi
 
 # --- Check prerequisites ---

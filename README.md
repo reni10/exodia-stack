@@ -65,7 +65,7 @@ git clone https://github.com/reni10/exodia-stack.git && cd exodia-stack && ./ins
 ### Other Agents (Cursor, Windsurf, Copilot, Codex)
 
 1. Copy the contents of `mcp_config.json` into your agent's MCP settings
-2. Install RTK: `cargo install rtk`
+2. Install RTK: `cargo install --git https://github.com/rtk-ai/rtk`
 3. Copy `policy.md` into your project's `.cursorrules` or `agents.md`
 
 ### Prerequisites
