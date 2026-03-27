@@ -19,11 +19,8 @@
       ]
     },
     "codebase-memory": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@exaudeus/memory-mcp"
-      ]
+      "command": "codebase-memory-mcp",
+      "args": []
     },
     "distill": {
       "command": "npx",

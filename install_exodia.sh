@@ -25,8 +25,14 @@ if command -v claude &>/dev/null; then
   claude mcp add-json serena '{"command":"uvx","args":["--from","git+https://github.com/oraios/serena","serena","start-mcp-server"]}' -s user 2>/dev/null && \
     echo "  ✓ Serena registered" || echo "  ⚠ Serena already registered or failed"
 
-  claude mcp add-json codebase-memory '{"command":"npx","args":["-y","@exaudeus/memory-mcp"]}' -s user 2>/dev/null && \
-    echo "  ✓ Codebase-Memory registered" || echo "  ⚠ Codebase-Memory already registered or failed"
+  # Codebase-Memory installs itself via its own installer
+  if ! command -v codebase-memory-mcp &>/dev/null; then
+    echo "  → Installing Codebase-Memory..."
+    curl -fsSL https://raw.githubusercontent.com/DeusData/codebase-memory-mcp/main/install.sh | bash 2>/dev/null
+    echo "  ✓ Codebase-Memory installed (auto-registers with detected agents)"
+  else
+    echo "  ✓ Codebase-Memory already installed"
+  fi
 
   claude mcp add-json distill '{"command":"npx","args":["-y","@janreges/ai-distiller-mcp"]}' -s user 2>/dev/null && \
     echo "  ✓ AI-Distiller registered" || echo "  ⚠ AI-Distiller already registered or failed"
