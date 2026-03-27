@@ -71,7 +71,7 @@ git clone https://github.com/reni10/exodia-stack.git && cd exodia-stack && ./ins
 ### Prerequisites
 
 - **Python 3.8+** with `uvx` (for jCodeMunch and Serena)
-- **Node.js 18+** with `npx` (for Codebase-Memory and AI-Distiller)
+- **Node.js 18+** with `npx` (for AI-Distiller)
 - **Rust toolchain** (for RTK) — or use the pre-built binary
 
 ### Using RTK
